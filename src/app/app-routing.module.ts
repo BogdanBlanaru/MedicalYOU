@@ -9,7 +9,7 @@ import { PacientGuard } from './guards/pacient.guard';
 import { VirtualAssistantComponent } from './virtual-assistant/virtual-assistant.component';
 import { IntroductionComponent } from './virtual-assistant/introduction/introduction.component';
 import { PatientComponent } from './virtual-assistant/patient/patient.component';
-import { SymptomsComponent } from './symptoms/symptoms.component';
+import { SymptomsComponent } from './virtual-assistant/symptoms/symptoms.component';
 import { RegionsComponent } from './virtual-assistant/regions/regions.component';
 import { InterviewComponent } from './virtual-assistant/interview/interview.component';
 import { ResultsComponent } from './virtual-assistant/results/results.component';
