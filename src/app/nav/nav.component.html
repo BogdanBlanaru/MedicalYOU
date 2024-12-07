@@ -1,0 +1,123 @@
+<header id="header" class="bg-light-blue-500 shadow-lg">
+  <nav class="container mx-auto flex items-center justify-start py-4 px-6 relative">
+    <!-- App Name -->
+    <a class="text-3xl text-white font-bold uppercase mr-8" routerLink="/">Medical You</a>
+
+    <!-- Hamburger Menu (Mobile) -->
+    <button class="block md:hidden text-white ml-auto" (click)="toggleMenu()">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+      </svg>
+    </button>
+
+    <!-- Primary Navigation for Desktop -->
+    <ul class="hidden md:flex flex-row items-center space-x-6">
+      <li *ngIf="!(auth.isAuthenticated$ | async); else authLinks">
+        <a class="text-white font-medium hover:text-light-blue-300 transition-colors"
+          href="#"
+          (click)="openModal($event)">
+          Login / Register
+        </a>
+      </li>
+      <ng-template #authLinks>
+        <li>
+          <a class="text-white font-medium hover:text-light-blue-300 transition-colors"
+            routerLink="/manage"
+            routerLinkActive="text-light-blue-200"
+            [routerLinkActiveOptions]="{ exact: true }"
+            [queryParams]="{ sort: '1' }">
+            Manage
+          </a>
+        </li>
+        <li>
+          <a class="text-white font-medium hover:text-light-blue-300 transition-colors"
+            routerLink="/upload"
+            routerLinkActive="text-light-blue-200"
+            [routerLinkActiveOptions]="{ exact: true }">
+            Upload
+          </a>
+        </li>
+        <li *ngIf="isPacient">
+          <a
+            routerLink="/virtual-assistant"
+            class="text-white font-medium hover:text-light-blue-300 transition-colors"
+          >
+            Virtual Medical Assistant
+          </a>
+        </li>
+        <li>
+          <a class="text-white font-medium hover:text-light-blue-300 transition-colors"
+            href="#"
+            (click)="logout()">
+            Logout
+          </a>
+        </li>
+      </ng-template>
+      <li>
+        <a class="text-white font-medium hover:text-light-blue-300 transition-colors"
+          routerLink="/about"
+          routerLinkActive="text-light-blue-200">
+          About
+        </a>
+      </li>
+    </ul>
+
+    <!-- Primary Navigation for Mobile -->
+    <ul
+      class="absolute top-16 left-0 w-full bg-light-blue-600 flex flex-col items-start space-y-4 p-6 rounded-b-lg shadow-lg z-[9999]"
+      [class.hidden]="!isMenuOpen"
+      [class.block]="isMenuOpen">
+      <li *ngIf="!(auth.isAuthenticated$ | async); else authLinksMobile">
+        <a class="text-white font-bold hover:text-light-blue-300 transition-colors"
+          href="#"
+          (click)="openModal($event)">
+          Login / Register
+        </a>
+      </li>
+      <ng-template #authLinksMobile>
+        <li>
+          <a class="text-white font-bold hover:text-light-blue-300 transition-colors"
+            routerLink="/manage"
+            routerLinkActive="text-light-blue-200"
+            [routerLinkActiveOptions]="{ exact: true }"
+            [queryParams]="{ sort: '1' }"
+            (click)="closeMenu()">
+            Manage
+          </a>
+        </li>
+        <li>
+          <a class="text-white font-bold hover:text-light-blue-300 transition-colors"
+            routerLink="/upload"
+            routerLinkActive="text-light-blue-200"
+            [routerLinkActiveOptions]="{ exact: true }"
+            (click)="closeMenu()">
+            Upload
+          </a>
+        </li>
+        <li *ngIf="isPacient">
+          <a
+            routerLink="/virtual-assistant"
+            class="text-white font-medium hover:text-light-blue-300 transition-colors"
+          >
+            Virtual Medical Assistant
+          </a>
+        </li>
+        <li>
+          <a class="text-white font-bold hover:text-light-blue-300 transition-colors"
+            href="#"
+            (click)="logout(); closeMenu()">
+            Logout
+          </a>
+        </li>
+      </ng-template>
+      <li>
+        <a class="text-white font-bold hover:text-light-blue-300 transition-colors"
+          routerLink="/about"
+          routerLinkActive="text-light-blue-200"
+          (click)="closeMenu()">
+          About
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
