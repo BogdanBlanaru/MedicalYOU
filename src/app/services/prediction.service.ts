@@ -6,11 +6,17 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class PredictionService {
-  private baseUrl = 'http://your-backend-api.com'; // Update this with your backend URL
+  private baseUrl = 'http://localhost:8000';
 
   constructor(private http: HttpClient) {}
 
-  getPredictionResults(): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/predict`);
+  predictDisease(userId: string, symptoms: string[]): Observable<any> {
+    const payload = {
+      user_id: userId,
+      message: symptoms.join(", "),
+    };
+    console.log('Sending payload:', payload);
+    return this.http.post(`${this.baseUrl}/predict`, payload);
   }
+  
 }

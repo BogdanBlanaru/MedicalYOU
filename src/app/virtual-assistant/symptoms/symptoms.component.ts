@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SymptomsService } from 'src/app/services/symptoms.service';
 import { ChatService } from 'src/app/services/chat.service';
+import { ResultsStateService } from 'src/app/services/results-state.service';
 
 @Component({
   selector: 'app-symptoms',
@@ -23,11 +24,11 @@ export class SymptomsComponent implements OnInit {
   chatCompleted: boolean = false; // To track chat completion
   predictionResult: any = null;
 
-
   constructor(
     private router: Router,
     private symptomsService: SymptomsService,
-    private chatService: ChatService
+    private chatService: ChatService,
+    private resultsStateService: ResultsStateService
   ) {}
 
   ngOnInit(): void {
@@ -103,20 +104,18 @@ export class SymptomsComponent implements OnInit {
     this.router.navigate(['/virtual-assistant/patient']);
   }
 
-  predictDisease(): void {
+  proceedToResults(): void {
     if (this.selectedSymptoms.length > 0) {
-      this.symptomsService.predictDisease(this.userId, this.selectedSymptoms).subscribe((response) => {
-        this.predictionResult = response;
-        console.log('Prediction Result:', response);
-      });
-    }
-  }
-
-  // Proceed to the next step
-  proceedToRegions(): void {
-    if (this.selectedSymptoms.length > 0) {
-      console.log('Selected Symptoms:', this.selectedSymptoms); // Debugging output
-      this.router.navigate(['/virtual-assistant/regions']);
+      this.symptomsService.predictDisease(this.userId, this.selectedSymptoms).subscribe(
+        (response) => {
+          console.log('Prediction Result:', response); // Debugging
+          this.resultsStateService.setPredictionResult(response); // Save result in service
+          this.router.navigate(['/virtual-assistant/results']); // Navigate without state
+        },
+        (error) => {
+          console.error('Prediction Error:', error);
+        }
+      );
     }
   }
 
