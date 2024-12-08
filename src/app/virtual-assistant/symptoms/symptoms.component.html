@@ -10,7 +10,7 @@
       <input
         type="text"
         [(ngModel)]="userMessage"
-        class="flex-1 p-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+        class="flex-1 p-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-gray-800"
         placeholder="Type your message..."
       />
       <button
@@ -46,12 +46,13 @@
         <li
           *ngFor="let symptom of filteredSymptoms"
           (click)="selectSymptomFromSearch(symptom)"
-          class="p-2 cursor-pointer hover:bg-blue-100"
+          class="p-2 cursor-pointer hover:bg-blue-100 text-gray-800"
         >
           {{ symptom }}
         </li>
       </ul>
     </div>
+
 
     <!-- Selected Symptoms -->
     <div class="flex flex-wrap gap-2 mb-6">
