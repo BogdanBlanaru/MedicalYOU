@@ -8,7 +8,7 @@ export class PacientGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate(): boolean {
-    const user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
 
     if (user.role === 'pacient') {
       console.log('PacientGuard: Access granted for pacient.');

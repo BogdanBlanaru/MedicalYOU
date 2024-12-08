@@ -26,7 +26,7 @@ export class NavComponent implements OnInit {
       }
     });
 
-    const user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
     console.log(user);
     if (user.role === 'pacient') {
       console.log(user.role);
