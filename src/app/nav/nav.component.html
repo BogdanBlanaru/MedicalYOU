@@ -52,7 +52,15 @@
           >
             Video Call
           </a>
-        </li>        
+        </li>   
+        <li *ngIf="isPacient">
+          <a
+            routerLink="/patient-history"
+            class="text-white font-medium hover:text-light-blue-300 transition-colors"
+          >
+            Patient History
+          </a>
+        </li>             
         <li>
           <a class="text-white font-medium hover:text-light-blue-300 transition-colors"
             href="#"
@@ -118,7 +126,16 @@
           >
             Video Call
           </a>
-        </li>        
+        </li>  
+        <li *ngIf="isPacient">
+          <a
+            routerLink="/patient-history"
+            class="text-white font-bold hover:text-light-blue-300 transition-colors"
+            (click)="closeMenu()"
+          >
+            Patient History
+          </a>
+        </li>                     
         <li>
           <a class="text-white font-bold hover:text-light-blue-300 transition-colors"
             href="#"

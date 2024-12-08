@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { ClipService } from './services/clip.service';
 import { PacientGuard } from './guards/pacient.guard';
 import { VirtualAssistantComponent } from './virtual-assistant/virtual-assistant.component';
 import { IntroductionComponent } from './virtual-assistant/introduction/introduction.component';
@@ -13,6 +12,7 @@ import { RegionsComponent } from './virtual-assistant/regions/regions.component'
 import { InterviewComponent } from './virtual-assistant/interview/interview.component';
 import { ResultsComponent } from './virtual-assistant/results/results.component';
 import { VideoCallComponent } from './video-call/video-call.component';
+import { PatientHistoryComponent } from './patient-history/patient-history.component';
 
 const routes: Routes = [
   {
@@ -61,6 +61,11 @@ const routes: Routes = [
       {
         path: 'results',
         component: ResultsComponent,
+      },
+      {
+        path: 'patient-history', 
+        component: PatientHistoryComponent,
+        canActivate: [PacientGuard],
       },
     ],
   },

@@ -27,6 +27,7 @@ import { PatientComponent } from './virtual-assistant/patient/patient.component'
 import { SymptomsComponent } from './virtual-assistant/symptoms/symptoms.component';
 import { HttpClientModule } from '@angular/common/http';
 import { VideoCallComponent } from './video-call/video-call.component';
+import { PatientHistoryComponent } from './patient-history/patient-history.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { VideoCallComponent } from './video-call/video-call.component';
     RegionsComponent,
     InterviewComponent,
     ResultsComponent,
-    VideoCallComponent
+    VideoCallComponent,
+    PatientHistoryComponent
   ],
   imports: [
     BrowserModule,

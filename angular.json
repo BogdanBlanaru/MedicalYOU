@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "clips": {
+    "medicalYou": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/clips",
+            "outputPath": "dist/medicalYou",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "clips:build:production"
+              "browserTarget": "medicalYou:build:production"
             },
             "development": {
-              "browserTarget": "clips:build:development"
+              "browserTarget": "medicalYou:build:development"
             }
           },
           "defaultConfiguration": "development",
@@ -90,7 +90,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "clips:build"
+            "browserTarget": "medicalYou:build"
           }
         },
         "test": {
@@ -113,11 +113,11 @@
         "cypress-run": {
           "builder": "@cypress/schematic:cypress",
           "options": {
-            "devServerTarget": "clips:serve"
+            "devServerTarget": "medicalYou:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "clips:serve:production"
+              "devServerTarget": "medicalYou:serve:production"
             }
           }
         },
@@ -131,13 +131,13 @@
         "e2e": {
           "builder": "@cypress/schematic:cypress",
           "options": {
-            "devServerTarget": "clips:serve",
+            "devServerTarget": "medicalYou:serve",
             "watch": true,
             "headless": false
           },
           "configurations": {
             "production": {
-              "devServerTarget": "clips:serve:production"
+              "devServerTarget": "medicalYou:serve:production"
             }
           }
         }
