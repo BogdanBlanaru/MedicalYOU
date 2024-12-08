@@ -45,6 +45,14 @@
             Virtual Medical Assistant
           </a>
         </li>
+        <li *ngIf="isPacient">
+          <a
+            routerLink="/video-call"
+            class="text-white font-medium hover:text-light-blue-300 transition-colors"
+          >
+            Video Call
+          </a>
+        </li>        
         <li>
           <a class="text-white font-medium hover:text-light-blue-300 transition-colors"
             href="#"
@@ -102,6 +110,15 @@
             Virtual Medical Assistant
           </a>
         </li>
+        <li *ngIf="isPacient">
+          <a
+            routerLink="/video-call"
+            class="text-white font-bold hover:text-light-blue-300 transition-colors"
+            (click)="closeMenu()"
+          >
+            Video Call
+          </a>
+        </li>        
         <li>
           <a class="text-white font-bold hover:text-light-blue-300 transition-colors"
             href="#"

@@ -26,6 +26,7 @@ import { FormsModule } from '@angular/forms';
 import { PatientComponent } from './virtual-assistant/patient/patient.component';
 import { SymptomsComponent } from './virtual-assistant/symptoms/symptoms.component';
 import { HttpClientModule } from '@angular/common/http';
+import { VideoCallComponent } from './video-call/video-call.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { HttpClientModule } from '@angular/common/http';
     SymptomsComponent,
     RegionsComponent,
     InterviewComponent,
-    ResultsComponent
+    ResultsComponent,
+    VideoCallComponent
   ],
   imports: [
     BrowserModule,
