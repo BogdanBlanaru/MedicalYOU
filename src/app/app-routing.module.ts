@@ -15,6 +15,7 @@ import { VideoCallComponent } from './video-call/video-call.component';
 import { PatientHistoryComponent } from './patient-history/patient-history.component';
 import { DoctorsPatientsComponent } from './doctors-patients/doctors-patients.component';
 import { DoctorGuard } from './guards/doctor.guard';
+import { DoctorAppointmentsComponent } from './doctor-appointments/doctor-appointments.component';
 
 const routes: Routes = [
   {
@@ -73,9 +74,14 @@ const routes: Routes = [
     canActivate: [PacientGuard],
   },
   {
+    path: 'book-appointment',
+    component: DoctorAppointmentsComponent,
+    canActivate: [PacientGuard],
+  },
+  {
     path: 'doctor-patients',
     component: DoctorsPatientsComponent,
-    canActivate: [DoctorGuard], // Protect this page
+    canActivate: [DoctorGuard],
   },
   {
     path: '**',

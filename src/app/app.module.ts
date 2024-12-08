@@ -30,6 +30,7 @@ import { VideoCallComponent } from './video-call/video-call.component';
 import { PatientHistoryComponent } from './patient-history/patient-history.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DoctorsPatientsComponent } from './doctors-patients/doctors-patients.component';
+import { DoctorAppointmentsComponent } from './doctor-appointments/doctor-appointments.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { DoctorsPatientsComponent } from './doctors-patients/doctors-patients.co
     ResultsComponent,
     VideoCallComponent,
     PatientHistoryComponent,
-    DoctorsPatientsComponent
+    DoctorsPatientsComponent,
+    DoctorAppointmentsComponent
   ],
   imports: [
     BrowserModule,
