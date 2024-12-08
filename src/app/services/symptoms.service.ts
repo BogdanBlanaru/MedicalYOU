@@ -15,7 +15,13 @@ export class SymptomsService {
   getSymptoms(): Observable<string[]> {
     return this.http.get<{ symptoms: string[] }>(`${this.baseUrl}/symptoms`).pipe(
       map((response) => response.symptoms) // Extract the symptoms array
+
     );
+  }
+
+  predictDisease(userId: string, symptoms: string[]): Observable<any> {
+    const body = { user_id: userId, message: symptoms.join(', ') };
+    return this.http.post(`${this.baseUrl}/predict`, body);
   }
   
 }
