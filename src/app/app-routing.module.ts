@@ -12,6 +12,7 @@ import { SymptomsComponent } from './virtual-assistant/symptoms/symptoms.compone
 import { RegionsComponent } from './virtual-assistant/regions/regions.component';
 import { InterviewComponent } from './virtual-assistant/interview/interview.component';
 import { ResultsComponent } from './virtual-assistant/results/results.component';
+import { VideoCallComponent } from './video-call/video-call.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,11 @@ const routes: Routes = [
   {
     path: 'about', // example.com/about
     component: AboutComponent,
+  },
+  {
+    path: 'video-call',
+    component: VideoCallComponent,
+    canActivate: [PacientGuard], // Protect this route for patients only
   },
   {
     path: 'virtual-assistant',
