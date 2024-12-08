@@ -29,6 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { VideoCallComponent } from './video-call/video-call.component';
 import { PatientHistoryComponent } from './patient-history/patient-history.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { DoctorsPatientsComponent } from './doctors-patients/doctors-patients.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     InterviewComponent,
     ResultsComponent,
     VideoCallComponent,
-    PatientHistoryComponent
+    PatientHistoryComponent,
+    DoctorsPatientsComponent
   ],
   imports: [
     BrowserModule,

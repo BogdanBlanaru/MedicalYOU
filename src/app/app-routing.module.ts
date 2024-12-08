@@ -13,6 +13,8 @@ import { InterviewComponent } from './virtual-assistant/interview/interview.comp
 import { ResultsComponent } from './virtual-assistant/results/results.component';
 import { VideoCallComponent } from './video-call/video-call.component';
 import { PatientHistoryComponent } from './patient-history/patient-history.component';
+import { DoctorsPatientsComponent } from './doctors-patients/doctors-patients.component';
+import { DoctorGuard } from './guards/doctor.guard';
 
 const routes: Routes = [
   {
@@ -69,6 +71,11 @@ const routes: Routes = [
     path: 'patient-history', 
     component: PatientHistoryComponent,
     canActivate: [PacientGuard],
+  },
+  {
+    path: 'doctor-patients',
+    component: DoctorsPatientsComponent,
+    canActivate: [DoctorGuard], // Protect this page
   },
   {
     path: '**',

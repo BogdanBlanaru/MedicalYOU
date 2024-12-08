@@ -36,14 +36,16 @@
             Video Call
           </a>
         </li>   
-        <li *ngIf="isPacient">
-          <a
-            routerLink="/patient-history"
-            class="text-white font-medium hover:text-light-blue-300 transition-colors"
-          >
-            Patient History
+        <li *ngIf="auth.isDoctor()">
+          <a routerLink="/doctor-patients" class="text-white font-medium hover:text-light-blue-300">
+            My Patients
           </a>
-        </li>    
+        </li>
+        <li *ngIf="auth.isPatient()">
+          <a routerLink="/patient-history" class="text-white font-medium hover:text-light-blue-300">
+            My History
+          </a>
+        </li>                  
         <li>
           <a class="text-white font-medium hover:text-light-blue-300 transition-colors"
             routerLink="/about"
@@ -92,15 +94,24 @@
             Video Call
           </a>
         </li>  
-        <li *ngIf="isPacient">
+        <li *ngIf="auth.isDoctor()">
+          <a
+            routerLink="/doctor-patients"
+            class="text-white font-bold hover:text-light-blue-300 transition-colors"
+            (click)="closeMenu()"
+          >
+            My Patients
+          </a>
+        </li>
+        <li *ngIf="auth.isPatient()">
           <a
             routerLink="/patient-history"
             class="text-white font-bold hover:text-light-blue-300 transition-colors"
             (click)="closeMenu()"
           >
-            Patient History
+            My History
           </a>
-        </li>   
+        </li>                
         <li>
           <a class="text-white font-bold hover:text-light-blue-300 transition-colors"
             routerLink="/about"

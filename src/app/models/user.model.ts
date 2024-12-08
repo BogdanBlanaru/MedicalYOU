@@ -3,5 +3,5 @@ export interface IUser {
   name: string;
   email: string;
   password: string;
-  role: 'pacient' | 'doctor'; // Role selection
+  role: 'doctor' | 'patient'; // Add 'role' property
 }
