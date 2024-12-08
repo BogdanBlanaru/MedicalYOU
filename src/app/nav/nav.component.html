@@ -20,23 +20,6 @@
         </a>
       </li>
       <ng-template #authLinks>
-        <li>
-          <a class="text-white font-medium hover:text-light-blue-300 transition-colors"
-            routerLink="/manage"
-            routerLinkActive="text-light-blue-200"
-            [routerLinkActiveOptions]="{ exact: true }"
-            [queryParams]="{ sort: '1' }">
-            Manage
-          </a>
-        </li>
-        <li>
-          <a class="text-white font-medium hover:text-light-blue-300 transition-colors"
-            routerLink="/upload"
-            routerLinkActive="text-light-blue-200"
-            [routerLinkActiveOptions]="{ exact: true }">
-            Upload
-          </a>
-        </li>
         <li *ngIf="isPacient">
           <a
             routerLink="/virtual-assistant"
@@ -60,7 +43,14 @@
           >
             Patient History
           </a>
-        </li>             
+        </li>    
+        <li>
+          <a class="text-white font-medium hover:text-light-blue-300 transition-colors"
+            routerLink="/about"
+            routerLinkActive="text-light-blue-200">
+            About
+          </a>
+        </li>         
         <li>
           <a class="text-white font-medium hover:text-light-blue-300 transition-colors"
             href="#"
@@ -69,13 +59,7 @@
           </a>
         </li>
       </ng-template>
-      <li>
-        <a class="text-white font-medium hover:text-light-blue-300 transition-colors"
-          routerLink="/about"
-          routerLinkActive="text-light-blue-200">
-          About
-        </a>
-      </li>
+      
     </ul>
 
     <!-- Primary Navigation for Mobile -->
@@ -91,25 +75,6 @@
         </a>
       </li>
       <ng-template #authLinksMobile>
-        <li>
-          <a class="text-white font-bold hover:text-light-blue-300 transition-colors"
-            routerLink="/manage"
-            routerLinkActive="text-light-blue-200"
-            [routerLinkActiveOptions]="{ exact: true }"
-            [queryParams]="{ sort: '1' }"
-            (click)="closeMenu()">
-            Manage
-          </a>
-        </li>
-        <li>
-          <a class="text-white font-bold hover:text-light-blue-300 transition-colors"
-            routerLink="/upload"
-            routerLinkActive="text-light-blue-200"
-            [routerLinkActiveOptions]="{ exact: true }"
-            (click)="closeMenu()">
-            Upload
-          </a>
-        </li>
         <li *ngIf="isPacient">
           <a
             routerLink="/virtual-assistant"
@@ -135,7 +100,15 @@
           >
             Patient History
           </a>
-        </li>                     
+        </li>   
+        <li>
+          <a class="text-white font-bold hover:text-light-blue-300 transition-colors"
+            routerLink="/about"
+            routerLinkActive="text-light-blue-200"
+            (click)="closeMenu()">
+            About
+          </a>
+        </li>                  
         <li>
           <a class="text-white font-bold hover:text-light-blue-300 transition-colors"
             href="#"
@@ -144,14 +117,6 @@
           </a>
         </li>
       </ng-template>
-      <li>
-        <a class="text-white font-bold hover:text-light-blue-300 transition-colors"
-          routerLink="/about"
-          routerLinkActive="text-light-blue-200"
-          (click)="closeMenu()">
-          About
-        </a>
-      </li>
     </ul>
   </nav>
 </header>

@@ -28,6 +28,7 @@ import { SymptomsComponent } from './virtual-assistant/symptoms/symptoms.compone
 import { HttpClientModule } from '@angular/common/http';
 import { VideoCallComponent } from './video-call/video-call.component';
 import { PatientHistoryComponent } from './patient-history/patient-history.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { PatientHistoryComponent } from './patient-history/patient-history.compo
     AngularFireStorageModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxChartsModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

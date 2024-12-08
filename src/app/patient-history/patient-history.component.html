@@ -1,25 +1,44 @@
-<div class="container mx-auto mt-8">
-    <h1 class="text-2xl font-bold text-light-blue-700 mb-4">Patient History</h1>
-  
-    <div *ngIf="history.length > 0; else noHistory">
-      <div *ngFor="let record of history" class="bg-white shadow p-4 rounded mb-4">
-        <h2 class="text-lg font-semibold">Date: {{ record.date | date }}</h2>
-        <p class="text-gray-600"><strong>Doctor:</strong> {{ record.doctorName }}</p>
-        <p class="text-gray-600"><strong>Symptoms:</strong> {{ record.symptoms.join(', ') }}</p>
-        <p class="text-gray-600"><strong>Results:</strong> {{ record.results }}</p>
-        <p class="text-gray-600"><strong>Patient Info:</strong></p>
-        <ul class="text-gray-500 ml-4">
-          <li><strong>Age:</strong> {{ record.age }}</li>
-          <li><strong>Gender:</strong> {{ record.gender }}</li>
-          <li><strong>Address:</strong> {{ record.address }}</li>
-          <li><strong>Weight:</strong> {{ record.weight }} kg</li>
-          <li><strong>Height:</strong> {{ record.height }} cm</li>
-        </ul>
-      </div>
+<app-nav></app-nav>
+<div class="content-wrapper">
+    <!-- Table Section -->
+    <div>
+      <h1 class="text-2xl font-bold text-light-blue-700 mb-4">Patient History</h1>
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Doctor</th>
+            <th>Symptoms</th>
+            <th>Results</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let record of patientHistory">
+            <td>{{ record.date | date }}</td>
+            <td>{{ record.doctorName }}</td>
+            <td>{{ record.symptoms.join(', ') }}</td>
+            <td>{{ record.results }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   
-    <ng-template #noHistory>
-      <p class="text-gray-500">No history available for this patient.</p>
-    </ng-template>
+    <!-- Chart Section -->
+    <div class="chart-container">
+      <h2 class="chart-title">Symptoms Analysis</h2>
+      <ngx-charts-bar-vertical
+        [view]="view"
+        [scheme]="colorScheme"
+        [results]="symptomsChartData"
+        [xAxis]="true"
+        [yAxis]="true"
+        [legend]="true"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true"
+        xAxisLabel="Symptoms"
+        yAxisLabel="Occurrences"
+      >
+      </ngx-charts-bar-vertical>
+    </div>
   </div>
   
