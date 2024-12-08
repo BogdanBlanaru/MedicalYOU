@@ -29,7 +29,7 @@
     </div>
   
      <!-- Terms and Conditions -->
-     <div class="w-full md:w-3/4 mx-auto">
+     <div *ngIf="currentSlide === 'terms'" class="w-full md:w-3/4 mx-auto">
         <h1 class="text-4xl font-bold text-blue-700 mb-4">Terms and Conditions</h1>
         <p class="text-blue-600 mb-6">
           Before proceeding with the questionnaire, please review the following:
