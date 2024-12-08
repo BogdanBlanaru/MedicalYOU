@@ -27,6 +27,7 @@ import { ResultsComponent } from './virtual-assistant/results/results.component'
 import { FormsModule } from '@angular/forms';
 import { PatientComponent } from './virtual-assistant/patient/patient.component';
 import { SymptomsComponent } from './virtual-assistant/symptoms/symptoms.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { SymptomsComponent } from './virtual-assistant/symptoms/symptoms.compone
     AppRoutingModule,
     AngularFireStorageModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
