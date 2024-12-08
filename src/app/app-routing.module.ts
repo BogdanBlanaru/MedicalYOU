@@ -62,17 +62,14 @@ const routes: Routes = [
         path: 'results',
         component: ResultsComponent,
       },
-      {
-        path: 'patient-history', 
-        component: PatientHistoryComponent,
-        canActivate: [PacientGuard],
-      },
+      
     ],
   },
-  // {
-  //   path: '', // dashboard/manage, dashboard/upload
-  //   loadChildren: async () => (await import('./video/video.module')).VideoModule,
-  // },
+  {
+    path: 'patient-history', 
+    component: PatientHistoryComponent,
+    canActivate: [PacientGuard],
+  },
   {
     path: '**',
     component: NotFoundComponent,
