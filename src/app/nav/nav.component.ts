@@ -27,9 +27,7 @@ export class NavComponent implements OnInit {
     });
 
     const user = JSON.parse(localStorage.getItem('user') || '{}');
-    console.log(user);
     if (user.role === 'pacient') {
-      console.log(user.role);
       this.isPacient = true;
     }
   }
@@ -44,7 +42,6 @@ export class NavComponent implements OnInit {
 
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
-    console.log('Menu state:', this.isMenuOpen);
   }
 
   closeMenu(): void {
