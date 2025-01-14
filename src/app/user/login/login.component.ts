@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { ModalService } from 'src/app/services/modal.service'; // <-- import
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,10 @@ export class LoginComponent implements OnInit {
   alertColor = 'blue';
   inSubmission = false;
 
-  constructor(private auth: AuthService) {}
+  constructor(
+    private auth: AuthService,
+    private modal: ModalService // <-- inject
+  ) {}
 
   ngOnInit(): void {}
 
@@ -27,18 +31,26 @@ export class LoginComponent implements OnInit {
     this.inSubmission = true;
 
     try {
+      // If your backend expects 'username' not 'email', ensure correct usage here
       await this.auth.login(this.credentials.email, this.credentials.password);
     } catch (e) {
       this.inSubmission = false;
       this.alertMsg = 'Invalid email or password. Please try again.';
       this.alertColor = 'red';
-
       console.error(e);
-
       return;
     }
 
+    // Hide success alert or show a quick success message
     this.alertMsg = 'Success! You are now logged in.';
     this.alertColor = 'green';
+
+    // Optionally wait a short moment or directly close the modal
+    setTimeout(() => {
+      // Close the "auth" modal so user sees the main screen
+      this.modal.toggleModal('auth');
+    }, 500);
+
+    this.inSubmission = false;
   }
 }

@@ -7,6 +7,9 @@ import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { RoleModalComponent } from './role-modal/role-modal.component';
+import { EmailTaken } from './validators/email-taken';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from '../interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,14 @@ import { RoleModalComponent } from './role-modal/role-modal.component';
     SharedModule,
     ReactiveFormsModule,
     FormsModule
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,      // <-- Provide the interceptor
+      useClass: AuthInterceptor,
+      multi: true                      // <-- This is important (multi: true)
+    },
+    EmailTaken
   ],
   exports: [
     AuthModalComponent,
