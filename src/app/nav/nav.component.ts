@@ -44,6 +44,7 @@ export class NavComponent implements OnInit {
 
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
+    console.log('Menu state:', this.isMenuOpen);
   }
 
   closeMenu(): void {

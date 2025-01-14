@@ -1,12 +1,27 @@
-<header id="header" class="bg-light-blue-500 shadow-lg">
-  <nav class="container mx-auto flex items-center justify-between py-4 px-6 relative">
+<header id="header" class="bg-light-blue-500 shadow-lg relative z-50">
+  <nav class="container mx-auto flex items-center justify-between py-4 px-6">
     <!-- App Name -->
     <a class="text-3xl text-white font-bold uppercase mr-8" routerLink="/">Medical You</a>
 
     <!-- Hamburger Menu (Mobile) -->
-    <button class="block md:hidden text-white ml-auto" (click)="toggleMenu()">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+    <button
+      class="block md:hidden text-white ml-auto focus:outline-none"
+      (click)="toggleMenu()"
+      aria-label="Toggle Menu"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16m-7 6h7"
+        />
       </svg>
     </button>
 
@@ -14,9 +29,11 @@
     <div class="hidden md:flex items-center space-x-6 ml-auto">
       <ul class="flex items-center space-x-6">
         <li *ngIf="!(auth.isAuthenticated$ | async); else authLinks">
-          <a class="text-white font-medium hover:text-light-blue-300 transition-colors"
+          <a
+            class="text-white font-medium hover:text-light-blue-300 transition-colors"
             href="#"
-            (click)="openModal($event)">
+            (click)="openModal($event)"
+          >
             Login / Register
           </a>
         </li>
@@ -36,7 +53,7 @@
             >
               Book Appointment
             </a>
-          </li>        
+          </li>
           <li *ngIf="isPacient">
             <a
               routerLink="/video-call"
@@ -44,28 +61,38 @@
             >
               Video Call
             </a>
-          </li>   
+          </li>
           <li *ngIf="auth.isDoctor()">
-            <a routerLink="/doctor-patients" class="text-white font-medium hover:text-light-blue-300">
+            <a
+              routerLink="/doctor-patients"
+              class="text-white font-medium hover:text-light-blue-300"
+            >
               My Patients
             </a>
           </li>
           <li *ngIf="isPacient">
-            <a routerLink="/patient-history" class="text-white font-medium hover:text-light-blue-300">
+            <a
+              routerLink="/patient-history"
+              class="text-white font-medium hover:text-light-blue-300"
+            >
               My History
             </a>
-          </li>                  
+          </li>
           <li>
-            <a class="text-white font-medium hover:text-light-blue-300 transition-colors"
+            <a
+              class="text-white font-medium hover:text-light-blue-300 transition-colors"
               routerLink="/about"
-              routerLinkActive="text-light-blue-200">
+              routerLinkActive="text-light-blue-200"
+            >
               About
             </a>
-          </li>         
+          </li>
           <li>
-            <a class="text-white font-medium hover:text-light-blue-300 transition-colors"
+            <a
+              class="text-white font-medium hover:text-light-blue-300 transition-colors"
               href="#"
-              (click)="logout()">
+              (click)="logout()"
+            >
               Logout
             </a>
           </li>
@@ -76,79 +103,79 @@
 
   <!-- Mobile Navigation -->
   <div
-  class="absolute top-16 left-0 w-full bg-light-blue-500 text-white flex flex-col items-start space-y-4 p-4 md:hidden"
-  *ngIf="isMenuOpen"
->
-  <ul class="space-y-4 w-full">
-    <li *ngIf="!(auth.isAuthenticated$ | async); else authLinksMobile">
-      <a
-        class="block text-white font-medium hover:text-light-blue-300 transition-colors"
-        href="#"
-        (click)="openModal($event)"
-      >
-        Login / Register
-      </a>
-    </li>
-    <ng-template #authLinksMobile>
-      <li *ngIf="isPacient">
+    class="absolute top-full left-0 w-full bg-light-blue-500 text-white flex flex-col items-start space-y-4 px-6 py-4 transition-all duration-300 ease-in-out z-40"
+    [ngClass]="{ 'hidden': !isMenuOpen, 'block': isMenuOpen }"
+  >
+    <ul class="space-y-4 w-full">
+      <li *ngIf="!(auth.isAuthenticated$ | async); else authLinksMobile">
         <a
-          routerLink="/virtual-assistant"
           class="block text-white font-medium hover:text-light-blue-300 transition-colors"
-        >
-          Virtual Medical Assistant
-        </a>
-      </li>
-      <li *ngIf="isPacient">
-        <a
-          routerLink="/book-appointment"
-          class="block text-white font-medium hover:text-light-blue-300 transition-colors"
-        >
-          Book Appointment
-        </a>
-      </li>
-      <li *ngIf="isPacient">
-        <a
-          routerLink="/video-call"
-          class="block text-white font-medium hover:text-light-blue-300 transition-colors"
-        >
-          Video Call
-        </a>
-      </li>
-      <li *ngIf="auth.isDoctor()">
-        <a
-          routerLink="/doctor-patients"
-          class="block text-white font-medium hover:text-light-blue-300"
-        >
-          My Patients
-        </a>
-      </li>
-      <li *ngIf="isPacient">
-        <a
-          routerLink="/patient-history"
-          class="block text-white font-medium hover:text-light-blue-300"
-        >
-          My History
-        </a>
-      </li>
-      <li>
-        <a
-          routerLink="/about"
-          routerLinkActive="text-light-blue-200"
-          class="block text-white font-medium hover:text-light-blue-300"
-        >
-          About
-        </a>
-      </li>
-      <li>
-        <a
           href="#"
-          class="block text-white font-medium hover:text-light-blue-300"
-          (click)="logout()"
+          (click)="openModal($event)"
         >
-          Logout
+          Login / Register
         </a>
       </li>
-    </ng-template>
-  </ul>
-</div>
+      <ng-template #authLinksMobile>
+        <li *ngIf="isPacient">
+          <a
+            routerLink="/virtual-assistant"
+            class="block text-white font-medium hover:text-light-blue-300 transition-colors"
+          >
+            Virtual Medical Assistant
+          </a>
+        </li>
+        <li *ngIf="isPacient">
+          <a
+            routerLink="/book-appointment"
+            class="block text-white font-medium hover:text-light-blue-300 transition-colors"
+          >
+            Book Appointment
+          </a>
+        </li>
+        <li *ngIf="isPacient">
+          <a
+            routerLink="/video-call"
+            class="block text-white font-medium hover:text-light-blue-300 transition-colors"
+          >
+            Video Call
+          </a>
+        </li>
+        <li *ngIf="auth.isDoctor()">
+          <a
+            routerLink="/doctor-patients"
+            class="block text-white font-medium hover:text-light-blue-300"
+          >
+            My Patients
+          </a>
+        </li>
+        <li *ngIf="isPacient">
+          <a
+            routerLink="/patient-history"
+            class="block text-white font-medium hover:text-light-blue-300"
+          >
+            My History
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/about"
+            routerLinkActive="text-light-blue-200"
+            class="block text-white font-medium hover:text-light-blue-300"
+          >
+            About
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
+            class="block text-white font-medium hover:text-light-blue-300"
+            (click)="logout()"
+          >
+            Logout
+          </a>
+        </li>
+      </ng-template>
+    </ul>
+  </div>
 </header>
