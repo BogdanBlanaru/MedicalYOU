@@ -53,7 +53,7 @@ export class NavComponent implements OnInit {
 
     this.closeMenu();
 
-    this.modal.toggleModal('auth');
+    this.modal.toggleModal('role');
   }
 
   logout(): void {

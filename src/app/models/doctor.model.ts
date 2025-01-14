@@ -1,19 +1,18 @@
-export enum Role {
-    DOCTOR = 'DOCTOR',
-  }
-  
-  export interface Doctor {
-    name: string;
-    email: string;
-    password: string; 
-    patients: string[]; 
-    specialization: string;
-    rating: number; 
-    hospital: string;
-    yearsOfExperience: number;
-    education: string;
-    officeHours: string;
-    contactNumber: string;
-    role: Role;
-  }
-  
+import { Role } from "./role.enum";
+
+
+export interface Doctor {
+  id?: number;                // optional on the front-end
+  name: string;
+  email: string;
+  password: string;
+  specialization?: string;
+  hospital?: string;
+  hospitalAddress?: string;
+  rating?: number;
+  yearsOfExperience?: number;
+  education?: string;
+  officeHours?: string;
+  contactNumber?: string;
+  role: Role;                 // 'DOCTOR'
+}

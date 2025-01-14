@@ -6,12 +6,14 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { RoleModalComponent } from './role-modal/role-modal.component';
 
 @NgModule({
   declarations: [
     AuthModalComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    RoleModalComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { RegisterComponent } from './register/register.component';
     FormsModule
   ],
   exports: [
-    AuthModalComponent
+    AuthModalComponent,
+    RoleModalComponent
   ]
 })
 export class UserModule { }
