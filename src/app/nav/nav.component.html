@@ -1,16 +1,35 @@
 <header id="header" class="bg-light-blue-500 shadow-lg relative z-50">
   <nav class="container mx-auto flex items-center justify-between py-4 px-6">
-    <a class="text-3xl text-white font-bold uppercase mr-8" routerLink="/">Medical You</a>
+    <!-- App Name / Logo -->
+    <a class="text-3xl text-white font-bold uppercase mr-8" routerLink="/">
+      Medical You
+    </a>
 
-    <!-- Hamburger (Mobile) -->
+    <!-- Hamburger (Mobile Only) -->
     <button
-      class="block md:hidden text-white ml-auto"
+      class="block md:hidden text-white ml-auto focus:outline-none"
       (click)="toggleMenu()"
+      aria-label="Toggle Menu"
     >
-      <!-- icon -->
+      <!-- Icon, e.g. a hamburger -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16m-7 6h7"
+        />
+      </svg>
     </button>
 
     <!-- Desktop Navigation -->
+    <!-- Hidden on mobile (md:hidden removes it below md) -->
     <div class="hidden md:flex items-center space-x-6 ml-auto">
       <ul class="flex items-center space-x-6">
         <!-- If there's no user, show "Login/Register" -->
@@ -39,7 +58,7 @@
           </a>
         </li>
 
-        <!-- Common Links for All Logged-In Users (Example) -->
+        <!-- Common link (example) -->
         <li *ngIf="currentUser">
           <a routerLink="/about" class="text-white font-medium">
             About
@@ -54,15 +73,21 @@
     </div>
   </nav>
 
-  <!-- Mobile Navigation (Similar Logic) -->
-  <div class="absolute top-full left-0 w-full bg-light-blue-500 text-white"
-       [ngClass]="{ 'hidden': !isMenuOpen, 'block': isMenuOpen }">
-    <ul class="py-4 px-6">
+  <!-- Mobile Navigation -->
+  <!-- Ensure it's hidden on desktop with `md:hidden` -->
+  <div
+    class="md:hidden absolute top-full left-0 w-full bg-light-blue-500 text-white"
+    [ngClass]="{ 'hidden': !isMenuOpen, 'block': isMenuOpen }"
+  >
+    <ul class="py-4 px-6 space-y-4">
+      <!-- If there's no user, show "Login/Register" -->
       <li *ngIf="!currentUser">
         <a href="#" class="block" (click)="openModal($event)">
           Login / Register
         </a>
       </li>
+
+      <!-- If user is a patient, show these links -->
       <li *ngIf="isPacient">
         <a routerLink="/virtual-assistant" class="block">
           Virtual Medical Assistant
@@ -73,11 +98,15 @@
           Book Appointment
         </a>
       </li>
+
+      <!-- If user is a doctor, show these links -->
       <li *ngIf="isDoctor">
         <a routerLink="/doctor-patients" class="block">
           My Patients
         </a>
       </li>
+
+      <!-- Common link (example) -->
       <li *ngIf="currentUser">
         <a routerLink="/about" class="block">
           About
