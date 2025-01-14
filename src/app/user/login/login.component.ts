@@ -4,8 +4,7 @@ import { ModalService } from 'src/app/services/modal.service'; // <-- import
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
   credentials = {
@@ -19,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private modal: ModalService // <-- inject
+    private modal: ModalService
   ) {}
 
   ngOnInit(): void {}

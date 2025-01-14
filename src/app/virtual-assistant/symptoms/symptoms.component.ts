@@ -6,8 +6,7 @@ import { ResultsStateService } from 'src/app/services/results-state.service';
 
 @Component({
   selector: 'app-symptoms',
-  templateUrl: './symptoms.component.html',
-  styleUrls: ['./symptoms.component.css'],
+  templateUrl: './symptoms.component.html'
 })
 export class SymptomsComponent implements OnInit {
   // Symptom dropdown properties

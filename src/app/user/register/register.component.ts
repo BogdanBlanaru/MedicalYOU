@@ -19,8 +19,7 @@ enum RoleEnum {
 
 @Component({
   selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
+  templateUrl: './register.component.html'
 })
 export class RegisterComponent implements OnInit, OnDestroy {
   inSubmission = false;

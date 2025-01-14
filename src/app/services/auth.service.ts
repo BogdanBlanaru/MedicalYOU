@@ -166,15 +166,28 @@ export class AuthService {
     if ($event) {
       $event.preventDefault();
     }
+  
+    try {
+      // If the server returns plain text or an empty body,
+      // specify { responseType: 'text' } so Angular won't parse it as JSON.
+      await this.http.post(
+        `${this.baseAuthUrl}/logout`, 
+        null, 
+        { responseType: 'text' }
+      ).toPromise();
+  
+      console.log('Server-side logout successful.');
+    } catch (error) {
+      console.error('Error calling /auth/logout:', error);
+    }
+  
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.currentUser = null;
-
-    // Also push null so subscribers update
     this.userSubject.next(null);
-
-    console.log('Logged out');
-  }
+  
+    console.log('Logged out locally (token removed).');
+  }  
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

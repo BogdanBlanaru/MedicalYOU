@@ -5,8 +5,7 @@ import { ResultsStateService } from 'src/app/services/results-state.service';
 
 @Component({
   selector: 'app-results',
-  templateUrl: './results.component.html',
-  styleUrls: ['./results.component.css'],
+  templateUrl: './results.component.html'
 })
 export class ResultsComponent {
   userId: string = 'user123';
