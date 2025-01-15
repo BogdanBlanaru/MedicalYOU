@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   // We'll pretend the user picks the role externally (e.g., via a roleService or a radio button).
   // For demonstration, we'll just store it here:
-  selectedRole: string = 'patient';
+  selectedRole: string = 'PATIENT';
 
   // Toggle advanced fields for doctor
   doctorFieldsOpen = false;
@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
    * Build or rebuild the form based on selectedRole.
    */
   buildForm(): void {
-    if (this.selectedRole === 'patient') {
+    if (this.selectedRole === 'PATIENT') {
       // PATIENT form
       this.registerForm = this.fb.group(
         {
@@ -146,7 +146,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   /**
    * Example method to toggle roles (could be triggered by a radio button or a role modal).
    */
-  switchRole(newRole: 'patient' | 'doctor'): void {
+  switchRole(newRole: 'PATIENT' | 'DOCTOR'): void {
     this.selectedRole = newRole;
     this.buildForm();
   }

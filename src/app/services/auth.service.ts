@@ -5,6 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { Doctor } from '../models/doctor.model';
 import { Patient } from '../models/patient.model';
 import { IUser } from '../models/user.model';
+import { RoleService } from './role.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,8 @@ export class AuthService {
   // 1) Holds the current user object in memory
   private currentUser: IUser | null = null;
 
+  private selectedRole: string = '';
+
   // 2) Expose user changes as a BehaviorSubject
   private userSubject = new BehaviorSubject<IUser | null>(null);
   public user$ = this.userSubject.asObservable();
@@ -23,11 +26,18 @@ export class AuthService {
   // For checking if user is logged in (e.g. for hiding modals)
   public isAuthenticated$: Observable<boolean>;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private roleService: RoleService
+  ) {
     // isAuthenticated$ is based on whether 'token' is in localStorage
     this.isAuthenticated$ = of(!!localStorage.getItem('token')).pipe(
       map(token => !!token)
     );
+
+    this.roleService.selectedRole$.subscribe((newRole) => {
+      this.selectedRole = newRole;
+    });
 
     const userStr = localStorage.getItem('user');
     if (userStr) {
@@ -42,7 +52,7 @@ export class AuthService {
    */
   public async createUser(userData: any): Promise<void> {
     let endpoint = `${this.baseAuthUrl}/register/patient`;
-    if (userData.role === 'DOCTOR' || userData.role === 'doctor') {
+    if (userData.role === 'DOCTOR' || userData.role === 'DOCTOR') {
       endpoint = `${this.baseAuthUrl}/register/doctor`;
     }
 
@@ -61,7 +71,7 @@ export class AuthService {
    * Login -> get JWT -> store token -> find user role -> push user into BehaviorSubject
    */
   public async login(email: string, password: string): Promise<void> {
-    const payload = { username: email, password };
+    const payload = { username: email, password, role: this.selectedRole };
     console.log('Login payload:', payload);
 
     // 1) Get token from /auth/login

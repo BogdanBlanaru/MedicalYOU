@@ -7,14 +7,14 @@
   <button
     type="button"
     class="px-3 py-1 bg-blue-500 text-white rounded"
-    (click)="switchRole('patient')"
+    (click)="switchRole('PATIENT')"
   >
     I am a Patient
   </button>
   <button
     type="button"
     class="px-3 py-1 bg-green-500 text-white rounded"
-    (click)="switchRole('doctor')"
+    (click)="switchRole('DOCTOR')"
   >
     I am a Doctor
   </button>
@@ -98,7 +98,7 @@
   </div>
 
   <!-- Doctor Fields -->
-  <div *ngIf="selectedRole === 'doctor'">
+  <div *ngIf="selectedRole === 'DOCTOR'">
     <button
       type="button"
       class="underline text-blue-600 mb-2"
