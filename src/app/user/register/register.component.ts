@@ -1,21 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormGroup,
-  FormControl,
   Validators,
-  FormBuilder,
-  ValidationErrors,
+  FormBuilder
 } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Subscription } from 'rxjs';
 import { EmailTaken } from '../validators/email-taken';
 import { RegisterValidators } from '../validators/register-validators';
+import { Role } from 'src/app/models/role.enum';
+import { RoleService } from 'src/app/services/role.service';
 
-// Optional: Your role enum
-enum RoleEnum {
-  PATIENT = 'PATIENT',
-  DOCTOR = 'DOCTOR',
-}
 
 @Component({
   selector: 'app-register',
@@ -29,7 +24,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   // We'll pretend the user picks the role externally (e.g., via a roleService or a radio button).
   // For demonstration, we'll just store it here:
-  selectedRole: 'patient' | 'doctor' = 'patient';
+  selectedRole: string = 'patient';
 
   // Toggle advanced fields for doctor
   doctorFieldsOpen = false;
@@ -42,12 +37,18 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   constructor(
     private auth: AuthService,
+    private roleService: RoleService,
     private emailTaken: EmailTaken,
     private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
-    this.buildForm();
+    this.roleSubscription = this.roleService.selectedRole$.subscribe((newRole) => {
+      // If the user picks a new role in the role modal, we update
+      this.selectedRole = newRole;
+      // Rebuild the form so the new fields (patient vs doctor) show up
+      this.buildForm();
+    });
   }
 
   /**
@@ -67,7 +68,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
             {
               validators: [Validators.required, Validators.email],
               asyncValidators: [this.emailTaken.validate],
-              updateOn: 'blur', // runs async validator on blur
+              updateOn: 'blur',
             },
           ],
           password: [
@@ -80,11 +81,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
           ],
           confirm_password: ['', [Validators.required]],
 
-          // Role stored as a string or you could use an enum
-          role: [RoleEnum.PATIENT],
+          role: [Role.PATIENT],
         },
         {
-          // Attach the custom validator that compares password & confirm_password
           validators: [RegisterValidators.match('password', 'confirm_password')],
         }
       );
@@ -112,7 +111,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
             ],
           ],
           confirm_password: ['', [Validators.required]],
-          role: [RoleEnum.DOCTOR],
+          role: [Role.DOCTOR],
 
           // DOCTOR-ONLY FIELDS with some basic validators:
           specialization: ['', [Validators.required, Validators.minLength(3)]],
@@ -149,7 +148,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
    */
   switchRole(newRole: 'patient' | 'doctor'): void {
     this.selectedRole = newRole;
-    // Rebuild the form
     this.buildForm();
   }
 

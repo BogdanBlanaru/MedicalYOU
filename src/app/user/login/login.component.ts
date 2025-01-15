@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { ModalService } from 'src/app/services/modal.service';
-import { NgForm } from '@angular/forms';  // <-- import for NgForm
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html'
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   credentials = {
     email: '',
     password: '',
@@ -22,9 +22,6 @@ export class LoginComponent implements OnInit {
     private modal: ModalService
   ) {}
 
-  ngOnInit(): void {}
-
-  // Accept the template form as a parameter
   async login(loginForm: NgForm) {
     this.showAlert = true;
     this.alertMsg = 'Please wait! We are logging you in.';
@@ -41,12 +38,10 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    // Optionally show a quick success message
     this.alertMsg = 'Success! You are now logged in.';
     this.alertColor = 'green';
     this.inSubmission = false;
 
-    // Reset the form fields + validation state
     loginForm.resetForm();
 
     // Close the "auth" modal
