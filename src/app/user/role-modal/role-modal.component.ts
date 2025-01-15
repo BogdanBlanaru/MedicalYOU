@@ -4,8 +4,7 @@ import { RoleService } from 'src/app/services/role.service';
 
 @Component({
   selector: 'app-role-modal',
-  templateUrl: './role-modal.component.html',
-  styleUrls: ['./role-modal.component.css']
+  templateUrl: './role-modal.component.html'
 })
 export class RoleModalComponent implements OnInit, OnDestroy {
 

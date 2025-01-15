@@ -5,8 +5,7 @@ import { AuthService, IUser } from '../services/auth.service';
 
 @Component({
   selector: 'app-nav',
-  templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  templateUrl: './nav.component.html'
 })
 export class NavComponent implements OnInit {
   isMenuOpen = false;
