@@ -1,7 +1,6 @@
 export interface IUser {
-  id: string;
-  name: string;
+  id?: string;
   email: string;
   password: string;
-  role: 'doctor' | 'patient'; // Add 'role' property
+  role: string; // Add 'role' property
 }

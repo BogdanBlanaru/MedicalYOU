@@ -1,7 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { ModalService } from '../services/modal.service';
-import { AuthService, IUser } from '../services/auth.service';
+import { AuthService } from '../services/auth.service';
+import { IUser } from '../models/user.model';
 
 @Component({
   selector: 'app-nav',
@@ -10,9 +11,7 @@ import { AuthService, IUser } from '../services/auth.service';
 export class NavComponent implements OnInit {
   isMenuOpen = false;
 
-  // We'll store the current user here:
   currentUser: IUser | null = null;
-  // Shortcut booleans for the template
   isPacient = false;
   isDoctor = false;
 
@@ -67,7 +66,6 @@ export class NavComponent implements OnInit {
   }
 
   logout(): void {
-    // If you don't store 'users' in localStorage, remove it
     localStorage.removeItem('users');
     this.auth.logout();
     this.router.navigate(['/']);

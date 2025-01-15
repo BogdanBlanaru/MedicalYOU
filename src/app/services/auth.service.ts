@@ -1,29 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, of, timer, throwError, BehaviorSubject } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
-
-// Example minimal interfaces for doctor/patient
-interface DoctorDto {
-  email: string;
-  // any other fields...
-}
-interface PatientDto {
-  email: string;
-  // any other fields...
-}
-
-export interface IUser {
-  email: string;
-  password?: string;
-  role?: string; // "DOCTOR" or "PATIENT"
-}
+import { Observable, of, throwError, BehaviorSubject } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { Doctor } from '../models/doctor.model';
+import { Patient } from '../models/patient.model';
+import { IUser } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  // Endpoints
   private baseAuthUrl = 'http://localhost:8080/auth';
   private baseUserUrl = 'http://localhost:8080/user';
 
@@ -36,18 +22,13 @@ export class AuthService {
 
   // For checking if user is logged in (e.g. for hiding modals)
   public isAuthenticated$: Observable<boolean>;
-  public isAuthenticatedWithDelay$: Observable<boolean>;
 
   constructor(private http: HttpClient) {
     // isAuthenticated$ is based on whether 'token' is in localStorage
     this.isAuthenticated$ = of(!!localStorage.getItem('token')).pipe(
       map(token => !!token)
     );
-    this.isAuthenticatedWithDelay$ = timer(500).pipe(
-      switchMap(() => this.isAuthenticated$)
-    );
 
-    // On service init, try to load any existing user from localStorage
     const userStr = localStorage.getItem('user');
     if (userStr) {
       this.currentUser = JSON.parse(userStr);
@@ -115,7 +96,7 @@ export class AuthService {
     try {
       // get all doctors
       const doctors = await this.http
-        .get<DoctorDto[]>(`${this.baseUserUrl}/doctors`)
+        .get<Doctor[]>(`${this.baseUserUrl}/doctors`)
         .pipe(catchError(this.handleError))
         .toPromise();
       if (doctors && doctors.some(d => d.email === email)) {
@@ -124,7 +105,7 @@ export class AuthService {
 
       // if not doctor, check patients
       const patients = await this.http
-        .get<PatientDto[]>(`${this.baseUserUrl}/patients`)
+        .get<Patient[]>(`${this.baseUserUrl}/patients`)
         .pipe(catchError(this.handleError))
         .toPromise();
       if (patients && patients.some(p => p.email === email)) {
